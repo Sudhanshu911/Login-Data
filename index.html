@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase_form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Login Form</h2>
+            <form>
+                <div class="inputbox">
+                    <input type="text" value="" id="username" required>
+                    <span>Username</span>
+                </div>
+                <div class="inputbox">
+                    <input type="email" value="" id="email" required>
+                    <span>E-mail</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" value="" id="phone" required>
+                    <span>Phone Number</span>
+                </div>
+                <input type="submit" value="Submit" class="sub" id="submit">
+            </form>
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, set, get, child  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD6f_uotPNTCvzUwJLhnLTTnDctEdkySUc",
+    authDomain: "fir-login-form-c95e1.firebaseapp.com",
+    projectId: "fir-login-form-c95e1",
+    storageBucket: "fir-login-form-c95e1.appspot.com",
+    messagingSenderId: "1072697665513",
+    appId: "1:1072697665513:web:911fe0a0680df007444d78"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+
+  //get ref to database services
+  const db = getDatabase(app);
+
+document.getElementById("submit").addEventListener('click', function(e){
+    e.preventDefault();
+
+    set(ref(db,'user/' + document.getElementById("username").value),
+    {
+        Username: document.getElementById("username").value,
+        Email: document.getElementById("email").value,
+        PhoneNumber: document.getElementById("phone").value,
+
+    });
+    alert("Login Sucessful !")
+})
+    </script>
+</body>
+</html>
